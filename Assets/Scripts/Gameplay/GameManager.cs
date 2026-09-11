@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour, ISpeedProvider
     private DifficultyService _difficulty;
     private ScoreService _scoreService;
     private float _elapsedTime;
-    private float _distanceTraveled;
     private float _currentSpeed;
+    private int _obstaclesPassed;
     private bool _isGameOver;
 
     public float CurrentSpeed => _currentSpeed;
@@ -32,9 +32,13 @@ public class GameManager : MonoBehaviour, ISpeedProvider
 
         _elapsedTime += Time.deltaTime;
         _currentSpeed = baseSpeed * _difficulty.GetSpeedMultiplier(_elapsedTime);
-        _distanceTraveled += _currentSpeed * Time.deltaTime;
+    }
 
-        OnScoreChanged?.Invoke(_scoreService.CalculateScore(_distanceTraveled));
+    public void RegisterObstaclePassed()
+    {
+        if (_isGameOver) return;
+        _obstaclesPassed++;
+        OnScoreChanged?.Invoke(_scoreService.CalculateScore(_obstaclesPassed));
     }
 
     private void HandlePlayerHit()

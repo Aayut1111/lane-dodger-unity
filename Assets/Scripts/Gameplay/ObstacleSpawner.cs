@@ -31,7 +31,6 @@ public class ObstacleSpawner : MonoBehaviour
         {
             SpawnOne();
 
-            // spawn faster as the game speeds up, so obstacle density feels roughly constant
             float speedFactor = Mathf.Max(gameManager.CurrentSpeed, 1f);
             float interval = baseSpawnInterval * (8f / speedFactor);
             yield return new WaitForSeconds(interval);
@@ -42,13 +41,11 @@ public class ObstacleSpawner : MonoBehaviour
     {
         ObstacleData chosen = _rng.GetRandomObstacle(obstaclePool);
 
-        // lane pick uses UnityEngine.Random, deliberately — there's no "weight" concept
-        // for lanes, just a uniform pick, same reasoning as the slot machine's blur-flicker RNG
         int lane = UnityEngine.Random.Range(0, laneXPositions.Length);
         Vector3 position = new Vector3(laneXPositions[lane], 0f, spawnZ);
 
         GameObject instance = pool.Get(chosen.prefab, position, Quaternion.identity);
         ObstacleMover mover = instance.GetComponent<ObstacleMover>();
-        mover.Init(pool, chosen.prefab, gameManager, recycleZ);
+        mover.Init(pool, chosen.prefab, gameManager, recycleZ, gameManager.RegisterObstaclePassed);
     }
 }

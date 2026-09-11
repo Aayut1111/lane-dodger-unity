@@ -1,9 +1,7 @@
-using UnityEngine;
-
 public class ScoreService
 {
-    public int CalculateScore(float distanceTraveled)
+    public int CalculateScore(int obstaclesPassed, int pointsPerObstacle = 10)
     {
-        return Mathf.FloorToInt(distanceTraveled);
+        return obstaclesPassed * pointsPerObstacle;
     }
 }
