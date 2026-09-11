@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510934997522173277}
   - component: {fileID: 959197066362003115}
+  - component: {fileID: 7264171603001095143}
   m_Layer: 0
   m_Name: Cone_Model
   m_TagString: Obstacle
@@ -54,6 +55,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 4, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7264171603001095143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5753239769415517545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09549324146aec84fa741dc896dc5453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleMover
 --- !u!1 &8186466208461449711
 GameObject:
   m_ObjectHideFlags: 0
